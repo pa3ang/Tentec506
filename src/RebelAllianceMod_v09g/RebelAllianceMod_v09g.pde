@@ -103,7 +103,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 //#define FEATURE_CW_DECODER             // Not implemented yet.
 #define FEATURE_KEYER                  // Keyer based on code from OpenQRP.org. **Working**
-#define FEATURE_SPEEDCONTROL_A7        //Analog speed control (uses onboard trimpot connected to A7) **Working**
+//#define FEATURE_SPEEDCONTROL_A7        //Analog speed control (uses onboard trimpot connected to A7) **Working**
 #define FEATURE_SPEEDCONTROL_U1        //Control the speed with the paddle by selecting U1 menu. **Working when deselecting SPEEDCONTROL_A7**
 
 #define FEATURE_BEACON_CQ              // Use USER Menu 3 or U2 to run message.  Make sure to change the Beacon text below! **Working**
