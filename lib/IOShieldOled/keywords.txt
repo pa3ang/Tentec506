@@ -1,0 +1,60 @@
+#######################################
+# Syntax Coloring Map For IOShieldOLED
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+begin	KEYWORD2
+end   KEYWORD2
+displayOn	KEYWORD2
+displayOff	KEYWORD2
+clear	KEYWORD2
+clearBuffer	KEYWORD2
+updateDisplay	KEYWORD2
+setCursor	KEYWORD2
+getCursor	KEYWORD2
+defineUserChar	KEYWORD2
+setCharUpdate	KEYWORD2
+getCharUpdate	KEYWORD2
+putChar	KEYWORD2
+putString	KEYWORD2
+setDrawColor	KEYWORD2
+setDrawMode	KEYWORD2
+getDrawMode	KEYWORD2
+getStdPattern	KEYWORD2
+setFillPattern	KEYWORD2
+moveTo	KEYWORD2
+getPos	KEYWORD2
+drawPixel	KEYWORD2
+getPixel	KEYWORD2
+drawLine	KEYWORD2
+drawRect	KEYWORD2
+drawFillRect	KEYWORD2
+getBmp	KEYWORD2
+putBmp	KEYWORD2
+drawChar	KEYWORD2
+drawString	KEYWORD2
+
+#######################################
+# Instances (KEYWORD2)
+#######################################
+
+IOShieldOled	KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
+colMax	LITERAL1
+rowMax	LITERAL1
+pageMax	LITERAL1
+modeSet	LITERAL1
+modeOr	LITERAL1
+modeAnd	LITERAL1
+modeXor	LITERAL1
