@@ -20,5 +20,4 @@ The code presented here is build together with Paul- KD8FJO and James - K4JK and
 
 More info Yahoo group @ http://groups.yahoo.com/neo/groups/TenTec506Rebel
 
-
 Note: You need to load the libraries into you MPIDE /hardware/pic32/libraries/  directory and restart MPIDE. The libraries can be found here and on github/pstyle/tentec506.
