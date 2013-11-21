@@ -29,7 +29,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 //  Again Ten-Tec Inc. NOT RESPONSIBLE for modified code and cannot help with the rewriting of the 
 //  factory code!
 /*
-/*********  PROJECT REBEL QRP  *****************************
+/*********  PROJECT REBEL QRP  ****************************
   Program for the ChipKit Uno32
   This is a simple program to demonstrate a 2 band QRP Amateur Radio Transceiver
   Amateur Programmer Bill Curb (WA4CDM).
