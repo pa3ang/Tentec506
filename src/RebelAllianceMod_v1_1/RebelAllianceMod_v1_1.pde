@@ -1,4 +1,3 @@
-
 /*
 <RebelAllianceMod for the TenTec Rebel 506 QRP Tranciever See PROJECT REBEL QRP below>
 **This is a modified version of the code released by TenTec.**
@@ -240,9 +239,9 @@ int ManualCWSpeed = 15; //  <---- SET MANUAL CW SPEED HERE
 
 #ifdef FEATURE_DISPLAY
   // define text constants		
-  const char txt0[22]         = "RebelAllMod v1.0";
+  const char txt0[22]         = "RebelAllMod v1.1";
   const char txt1[22]         = "NA8E,K4JK,PA3ANG";
-  const char txt2[22]         = "ReAllMod v1.0";
+  const char txt2[22]         = "ReAllMod v1.1";
   const char txt3[4]          = "100";
   const char txt4[4]          = "1K ";
   const char txt5[4]          = "10K";
