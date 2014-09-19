@@ -3,7 +3,7 @@
 <RebelAllianceMod for the TenTec Rebel 506 QRP Tranciever See PROJECT REBEL QRP below>
 ** This is a modified version of the code released by TenTec and the Rebel Alliance Mod V1.1. **
 ** FUNCTION AVAILABLE ARE: BANDSWITCH, IAMBIC KEYER (A7 SPEED), BEACON/CQ + ANNOUNCE FREQ **
-** NOKIA5110 DISPLAY, DISPLAY DATA VIA USB **
+** NOKIA5110 DISPLAY, DISPLAY DATA VIA USB  **
 */
 
   
