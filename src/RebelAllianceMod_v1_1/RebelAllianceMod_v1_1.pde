@@ -92,11 +92,11 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #define  Other_3_user                       2           //
 
 //-------------------------------  SET OPTONAL FEATURES HERE  -------------------------------------------------------------
-#define FEATURE_DISPLAY                // LCD display support (include one of the Model AND INTERFACE options below)
-#define FEATURE_LCD2004                // Classic LCD display using either 4 I/O lines or I2C. **Working**
+//#define FEATURE_DISPLAY                // LCD display support (include one of the Model AND INTERFACE options below)
+//#define FEATURE_LCD2004                // Classic LCD display using either 4 I/O lines or I2C. **Working**
 //#define FEATURE_LCD1602                // Classic LCD display using either 4 I/O lines or I2C. **Working**
 //#define FEATURE_LCD_4BIT               // Select the LCD Display interface either I2C or 4BIT NOT BOTH! **Working**
-#define FEATURE_LCD_I2C                // I2C backpack interface. Mind the J6 J8 jumper settings!  **Working**
+//#define FEATURE_LCD_I2C                // I2C backpack interface. Mind the J6 J8 jumper settings!  **Working**
 
 //#define FEATURE_LCD_NOKIA5110          // If using a NOKIA5110 Display. Use modified Adafruit libraries found here: github.com/pstyle/Tentec506/tree/master/lib/display  **Working**
 //#define FEATURE_TERMINAL               // Use a dumb terminal program as display  part of the dispay functionality so FEATURE_DIPSLAY must be on! **Working**
@@ -109,7 +109,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #define FEATURE_BEACON_CQ              // Use USER Menu 3 or U2 to run message.  Make sure to change the Beacon text below! **Working**
 
 //#define FEATURE_SERIAL                 // Enables serial output.  Only used for debugging at this point.  **Working**
-//#define FEATURE_CAT_CONTROL            // Enables CAT based on Kenwood All Frequency set and Interogation  FA00007030000; , IF; **Working**
+#define FEATURE_CAT_CONTROL            // Enables CAT based on Kenwood All Frequency set and Interogation  FA00007030000; , IF; **Working**
 
 #define FEATURE_BANDSWITCH             // Software based Band Switching.  Press FUNCTION > 2 seconds  **Working with additional Hardware**
 #define FEATURE_FREQANNOUNCE           // Announce Frequency by keying side tone (not TX). Press SELECT > 2 seconds  **Working**
@@ -142,8 +142,8 @@ unsigned long ditTime;                 // No. milliseconds per dit
   #define FEATURE_BEACON_OR_FREQANNOUNCE
   // Simple Arduino CW Beacon Keyer
   // Written by Mark VandeWettering K6HX
-  #define     BEACON          ("VVV DE ")             // Beacon text 
-  #define     CQ              ("CQCQCQ DE  PSE K")     // CQ text 
+  #define     BEACON          ("VVV DE PA3ANG BEACON JO32AM")              // Beacon text 
+  #define     CQ              ("CQCQCQ DE PA3ANG PA3ANG PA3ANG PSE K")     // CQ text 
 #endif
 
 #ifdef FEATURE_FREQANNOUNCE
@@ -299,6 +299,16 @@ int ManualCWSpeed = 15; //  <---- SET MANUAL CW SPEED HERE
   void    serialDump();
 #endif //FEATURE_SERIAL
 
+#ifdef FEATURE_CAT_CONTROL 
+  unsigned long  catStartTime    = 0;
+  unsigned long  catElapsedTime  = 0;
+  // bsm=0 is 40 meter, bsm=1 is 20 meter (original Rebel configuration)
+  int Band_bsm0_Low              = 700000;
+  int Band_bsm0_High             = 720000;
+  int Band_bsm1_Low              = 1400000;
+  int Band_bsm1_High             = 1435000;
+#endif  //FEATURE CAT_CONTROL
+
 // various varibales
 int TX_key;
 int band_sel;                               // select band 40 or 20 meter
@@ -324,10 +334,10 @@ int n                           = LOW;
 // frequency vaiables and memory
 const long meter_40             = 16.03e6;      // IF + Band frequency, 
 long meter_40_memory            = 16.03e6;      // HI side injection 40 meter 
-                                                // range 16 > 16.3 mhz
+                                                // range 16 > 16.3 mhz                                              
 const long meter_20             = 5.06e6;       // Band frequency - IF, LOW 
 long meter_20_memory            = 5.06e6;       // side injection 20 meter 
-                                                // range 5 > 5.35 mhz
+                                                // range 5 > 5.35 mhz                                               
 const long Reference            = 49.99975e6;   // for ad9834 this may be 
                                                 // tweaked in software to 
                                                 // fine tune the Radio
@@ -553,7 +563,7 @@ void setup()
   #endif
 
   #ifdef FEATURE_CAT_CONTROL  //Initialize CAT control
-    Serial.begin(38400);
+    Serial.begin(115200);
   #endif
 }   //    end of setup
 
@@ -754,7 +764,7 @@ void Serial_Cat() {
       encodeFreqChar = Serial.read();
       command += encodeFreqChar;
     }
-    if (command == "IF;") {
+    if (command == "IF;" || command == "FA;" ) {
       // info asked from Rebel
       #ifdef FEATURE_DISPLAY
           CatStatus  =  "T";
@@ -778,14 +788,18 @@ void Serial_Cat() {
     }
     else
     {
-      //expecting frequency
+      // command has been FR0 plus ;FA00007002500;MD3;  or so
+      // thus expecting frequency in the following 19 digits
+      catStartTime = millis();  //Reset the Timer for rubbish escape
       do
     {
       digits = Serial.available();
-    } while (digits < 19); 
+      catElapsedTime = millis() - catStartTime;
+    } while (digits < 19 && 500 > catElapsedTime); 
     for (int i=0; i<digits; i++)
     {
       encodeFreqChar = Serial.read();
+      // take only the expected characters with frequency info
       if (i > 5 && i <13 ) {
       #ifdef FEATURE_DISPLAY
           CatStatus  =  "R";
@@ -795,19 +809,23 @@ void Serial_Cat() {
       }
     }
     #ifndef FEATURE_BANDSWITCH
-      if ( ((value > 700000 && value < 730000) && bsm == 0) || ((value > 1400000 && value < 1435000) && bsm == 1) )
+      if ( ((value > Band_bsm0_Low && value < Band_bsm0_High) && bsm == 0) || ((value > Band_bsm1_Low && value < Band_bsm1_High) && bsm == 1) )
+      // can I change the frequency according to the band setting / configuration
     #endif
     #ifdef FEATURE_BANDSWITCH
-      if ( (value > 700000 && value < 730000) || (value > 1400000 && value < 1435000)  )
+      if ( (value > Band_bsm0_Low && value < Band_bsm0_High) || (value > Band_bsm1_Low && value < Band_bsm1_High)  )
+      // valid frequnecy according Rebel band configuration?
     #endif
     {
     #ifdef FEATURE_BANDSWITCH
-      if ( (value > 700000 && value < 730000) && bsm == 1)
+      if ( (value > Band_bsm0_Low && value < Band_bsm0_High) && bsm == 1) 
+      // need to change band?
       {
         bsm = 0;
         Band_Set_40_20M();
       }
-      if ( (value > 1400000 && value < 1430000) && bsm == 0)
+      if ( (value > Band_bsm1_Low && value < Band_bsm1_High) && bsm == 0)
+      // need to change band?
       {
         bsm = 1;
         Band_Set_40_20M();

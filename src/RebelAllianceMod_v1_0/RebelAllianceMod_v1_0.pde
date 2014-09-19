@@ -112,7 +112,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 //#define FEATURE_SERIAL                 // Enables serial output.  Only used for debugging at this point.  **Working**
 //#define FEATURE_CAT_CONTROL            // Enables CAT based on Kenwood All Frequency set and Interogation  FA00007030000; , IF; **Working**
 
-//#define FEATURE_BANDSWITCH             // Software based Band Switching.  Press FUNCTION > 2 seconds  **Working with additional Hardware**
+#define FEATURE_BANDSWITCH             // Software based Band Switching.  Press FUNCTION > 2 seconds  **Working with additional Hardware**
 #define FEATURE_FREQANNOUNCE           // Announce Frequency by keying side tone (not TX). Press SELECT > 2 seconds  **Working**
 //--------------------------------------------------------------------------------------------------------------------------
 
