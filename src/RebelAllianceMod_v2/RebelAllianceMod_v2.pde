@@ -15,7 +15,7 @@
 #define FREQ_REGISTER_BIT                   12          //  keep!
 #define AD9834_FREQ0_REGISTER_SELECT_BIT    0x4000      //  keep!
 #define AD9834_FREQ1_REGISTER_SELECT_BIT    0x8000      //  keep!
-#define FREQ0_INIT_VALUE                    0x01320000  //  ?
+#define FREQ0_INIT_VALUE                    0x01320000  //  keep?
 
 #define led                                 13          // Ten*Ten led
 #define Side_Tone                           3           // maybe to be changed to a logic control
