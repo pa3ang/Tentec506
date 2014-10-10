@@ -3,7 +3,7 @@
 <RebelAllianceMod for the TenTec Rebel 506 QRP Tranciever See PROJECT REBEL QRP below>
 ** This is a modified version of the code released by TenTec and the Rebel Alliance Mod V1.1. **
 ** FUNCTION AVAILABLE ARE: BANDSWITCH, IAMBIC KEYER (A7 SPEED), BEACON/CQ + ANNOUNCE FREQ **
-** NOKIA5110 DISPLAY, DISPLAY DATA VIA USB **
+** NOKIA5110 DISPLAY, DISPLAY DATA VIA USB  **
 */
 
   
@@ -15,7 +15,7 @@
 #define FREQ_REGISTER_BIT                   12          //  keep!
 #define AD9834_FREQ0_REGISTER_SELECT_BIT    0x4000      //  keep!
 #define AD9834_FREQ1_REGISTER_SELECT_BIT    0x8000      //  keep!
-#define FREQ0_INIT_VALUE                    0x01320000  //  ?
+#define FREQ0_INIT_VALUE                    0x01320000  //  keep?
 
 #define led                                 13          // Ten*Ten led
 #define Side_Tone                           3           // maybe to be changed to a logic control

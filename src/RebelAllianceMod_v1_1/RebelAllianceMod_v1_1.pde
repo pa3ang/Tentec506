@@ -1,6 +1,6 @@
 /*
 <RebelAllianceMod for the TenTec Rebel 506 QRP Tranciever See PROJECT REBEL QRP below>
-**This is a modified version of the code released by TenTec.**
+**This is a modified version of the code released by TenTec. **
 
 This library is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public

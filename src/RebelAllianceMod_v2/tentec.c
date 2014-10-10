@@ -2,7 +2,7 @@
 // Generated from : tentec.jpg
 // Time generated : Sat, 13 Sep 14 18:33:49 +0200  (Server timezone: CET)
 // Image Size     : 84x46 pixels
-// Memory usage   : 483 bytes
+// Memory usage   : 483 bytess
 
 const unsigned char tentec[] ={
 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xF8, 0xF8, 0xF8, 0xF8, 0xF8, 0xF8, 0xF8, 0xF8, 0xF8,   // 0x0010 (16) pixels
