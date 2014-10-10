@@ -998,8 +998,9 @@ void NOKIA5110_Refresh(int z)
     myGLCD.clrRow(1);
     myGLCD.setFont(MediumNumbers);
     if ( !z ) {	
+      myGLCD.clrRow(2, 70); myGLCD.clrRow(3, 70);
       myGLCD.printNumF(float(RX_frequency * 0.001), 1, CENTER, 16);
-
+      
       myGLCD.setFont(SmallFont);
       myGLCD.clrRow(0, 42);
       if ( RitFreqOffset != 0) {
