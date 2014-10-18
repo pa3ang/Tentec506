@@ -1040,17 +1040,17 @@ void NOKIA5110_Refresh(int z)
       f1 = RX_frequency/1000000;
       if (f1 > 9)
       {
-        myGLCD.drawBitmap(0, 16, bit_map_1, 4, 16); 
-        myGLCD.printNumI(f1-10, 3, 16, 1, '0');
+        myGLCD.drawBitmap(1, 16, bit_map_1, 4, 16); 
+        myGLCD.printNumI(f1-10, 4, 16, 1, '0');
       }
       else
-        myGLCD.printNumI(f1, 3, 16, 1); 
+        myGLCD.printNumI(f1, 4, 16, 1); 
       f2 = RX_frequency/1000 - f1*1000;
       
-      myGLCD.printNumI(f2, 19, 16, 3, '0');
-      myGLCD.printNumI((RX_frequency - f1*1000000 - f2*1000)/10, 59, 16, 2, '0');
-      myGLCD.drawBitmap(16, 24, bit_map_dot, 2, 8); 
-      myGLCD.drawBitmap(56, 24, bit_map_dot, 2, 8);
+      myGLCD.printNumI(f2, 20, 16, 3, '0');
+      myGLCD.printNumI((RX_frequency - f1*1000000 - f2*1000)/10, 60, 16, 2, '0');
+      myGLCD.drawBitmap(17, 24, bit_map_dot, 2, 8); 
+      myGLCD.drawBitmap(57, 24, bit_map_dot, 2, 8);
 
       myGLCD.setFont(SmallFont);
       myGLCD.clrRow(0, 42);
@@ -1063,17 +1063,17 @@ void NOKIA5110_Refresh(int z)
       f1 = TX_frequency/1000000;
       if (f1 > 9)
       {
-        myGLCD.drawBitmap(0, 16, bit_map_1, 4, 16); 
-        myGLCD.printNumI(f1-10, 3, 16, 1, '0');
+        myGLCD.drawBitmap(1, 16, bit_map_1, 4, 16); 
+        myGLCD.printNumI(f1-10, 4, 16, 1, '0');
       }
       else
-        myGLCD.printNumI(f1, 3, 16, 1); 
+        myGLCD.printNumI(f1, 4, 16, 1); 
       f2 = TX_frequency/1000 - f1*1000;
       
-      myGLCD.printNumI(f2, 19, 16, 3, '0');
-      myGLCD.printNumI((TX_frequency - f1*1000000 - f2*1000)/10, 59, 16, 2, '0');
-      myGLCD.drawBitmap(16, 24, bit_map_dot, 2, 8);
-      myGLCD.drawBitmap(56, 24, bit_map_dot, 2, 8);
+      myGLCD.printNumI(f2, 20, 16, 3, '0');
+      myGLCD.printNumI((TX_frequency - f1*1000000 - f2*1000)/10, 60, 16, 2, '0');
+      myGLCD.drawBitmap(17, 24, bit_map_dot, 2, 8);
+      myGLCD.drawBitmap(57, 24, bit_map_dot, 2, 8);
 
       myGLCD.setFont(SmallFont);
       if ( z == 1 ) myGLCD.print("     TX", RIGHT, 0);
