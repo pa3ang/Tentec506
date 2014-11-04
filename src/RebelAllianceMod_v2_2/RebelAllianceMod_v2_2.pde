@@ -582,7 +582,7 @@ void TX_routine()
             TX_key = digitalRead(TX_Dit);
         } while (TX_key == LOW);         // was high 
 
-        TX_off;
+        TX_off();
         loopStartTime = millis();       //Reset the Timer for this loop
     }
   } 
