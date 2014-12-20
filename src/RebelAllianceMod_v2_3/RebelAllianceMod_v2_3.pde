@@ -148,7 +148,9 @@ const int encoder0PinA          = 7;
 const int encoder0PinB          = 6;
 int encoder0Pos                 = 0;
 int encoder0PinALast            = LOW;
+int encoder0PinBLast            = LOW;
 int n                           = LOW;
+int m                           = LOW;
 
 // frequency vaiables and memory
 const long meter_40             = 16.03e6;      // IF + Band frequency, 
@@ -457,21 +459,44 @@ void loop()
 #endif  //FEATURE_BANDSWITCH
 
 //--------------------------- Encoder Routine ----------------------------  
+// now we get 36 steps instead of 10 -- by Dana Conrad KD0UTH
 void Encoder()
-{  
+{
     n = digitalRead(encoder0PinA);
-    if ((encoder0PinALast == LOW) && (n == HIGH)) 
+    m = digitalRead(encoder0PinB);
+
+    if ((encoder0PinALast == LOW) && (n == HIGH))
     {
-        if (digitalRead(encoder0PinB) == LOW) 
-        {
-            Frequency_down();    //encoder0Pos--;
-        } else 
-        {
-            Frequency_up();       //encoder0Pos++;
-        }
-    } 
+        if (m == LOW)
+          Frequency_down();    //encoder0Pos--;
+        else
+          Frequency_up();       //encoder0Pos++;
+    }
+    else if ((encoder0PinALast == HIGH) && (n == LOW))
+    {
+        if (m == HIGH)
+          Frequency_down();
+        else
+          Frequency_up();
+    }
+    else if ((encoder0PinBLast == LOW) && (m == HIGH))
+    {
+        if (n == LOW)
+          Frequency_up();
+        else
+          Frequency_down();
+    }
+    else if ((encoder0PinBLast == HIGH) && (m == LOW))
+    {
+        if (n == HIGH)
+          Frequency_up();
+        else
+          Frequency_down();
+    }
     encoder0PinALast = n;
+    encoder0PinBLast = m;
 }
+
 //----------------------------------------------------------------------
 void Frequency_up()
 { 
@@ -1441,19 +1466,19 @@ void Band_Width_N()
 
 void Step_Size_100()                 // Encoder Step Size 
 {
-    frequency_step = 100;            //  Can change this whatever step size one wants
+    frequency_step = 25;            //  Can change this whatever step size one wants
     Selected_Step = Step_100_Hz; 
 }
 
 void Step_Size_1k()                 // Encoder Step Size 
 {
-    frequency_step = 1e3;           //  Can change this whatever step size one wants
+    frequency_step = 250;           //  Can change this whatever step size one wants
     Selected_Step = Step_1000_hz; 
 }
 
 void Step_Size_10k()                // Encoder Step Size 
 {
-    frequency_step = 10e3;          //  Can change this whatever step size one wants
+    frequency_step = 2.5e3;          //  Can change this whatever step size one wants
     Selected_Step = Step_10000_hz; 
 }
 
