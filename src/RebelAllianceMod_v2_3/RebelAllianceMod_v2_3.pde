@@ -459,7 +459,7 @@ void loop()
 #endif  //FEATURE_BANDSWITCH
 
 //--------------------------- Encoder Routine ----------------------------  
-// now we get 36 steps instead of 10
+// now we get 36 steps instead of 10 -- by Dana Conrad KD0UTH
 void Encoder()
 {
     n = digitalRead(encoder0PinA);
