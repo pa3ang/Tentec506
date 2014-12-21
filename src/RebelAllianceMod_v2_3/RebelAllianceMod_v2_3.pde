@@ -2,6 +2,7 @@
 /*
 ** RebelAllianceMod for the TenTec Rebel 506 QRP Tranceiver by PA3ANG
 ** This is a modified version of the code released by TenTec and the Rebel Alliance Mod V1.1. 
+**
 ** FUNCTION AVAILABLE ARE: 
 ** BANDSWITCH - to disable comment the line #define FEATURE_BANDSWITCH. This function needs additional hardware!
 ** IAMBIC KEYER (A7 SPEED) - to disable set int ST_key = 1; Keyer setting IAMBICB and PDLSWAP changeble
@@ -11,6 +12,21 @@
 ** CAT - K3 emulation for VFO-A, Filter setting and S-meter reading
 ** TERMINAL - if no CAT is received the USB/Serial behaves as an output with 'display' data 
 ** NOKIA5110 DISPLAY - Standard display with LCD5110_Basic library ++ tentec.c bitmap changed by W2ROW
+**
+**  This library is free software; you can redistribute it and/or
+** modify it under the terms of the GNU Lesser General Public
+** License as published by the Free Software Foundation; either
+** version 2.1 of the License, or (at your option) any later version.
+** 
+** This library is distributed in the hope that it will be useful,
+** but WITHOUT ANY WARRANTY; without even the implied warranty of
+** MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+** Lesser General Public License for more details.
+** 
+** You should have received a copy of the GNU Lesser General Public
+** License along with this library; if not, write to the Free Software
+** Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+**
 ** Iambic Morse Code Keyer Sketch
 ** Copyright (c) 2009 Steven T. Elliott http://openqrp.org/?p=343
 ** 
@@ -459,7 +475,7 @@ void loop()
 #endif  //FEATURE_BANDSWITCH
 
 //--------------------------- Encoder Routine ----------------------------  
-// now we get 36 steps instead of 10
+// now we get 36 steps instead of 10 -- by Dana Conrad KD0UTH
 void Encoder()
 {
     n = digitalRead(encoder0PinA);
