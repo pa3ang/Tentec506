@@ -167,6 +167,7 @@ int encoder0PinALast            = LOW;
 int encoder0PinBLast            = LOW;
 int n                           = LOW;
 int m                           = LOW;
+int step_counter                = 0;          // Flash LED every 4 steps
 
 // frequency vaiables and memory
 const long meter_40             = 16.03e6;      // IF + Band frequency, 
@@ -517,8 +518,13 @@ void Encoder()
 void Frequency_up()
 { 
     frequency = frequency + frequency_step;
+    step_counter += 1;
     
-    Step_Flash();
+    if (step_counter % 4 == 0)
+    {
+        step_counter = 0;
+        Step_Flash();
+    }
     
 #ifndef FEATURE_BANDSWITCH
     bsm = digitalRead(Band_Select); 
@@ -533,8 +539,13 @@ void Frequency_up()
 void Frequency_down()
 { 
     frequency = frequency - frequency_step;
+    step_counter -= 1;
     
-    Step_Flash();
+    if (step_counter % 4 == 0)
+    {
+        step_counter = 0;
+        Step_Flash();
+    }
     
 #ifndef FEATURE_BANDSWITCH
     bsm = digitalRead(Band_Select); 
