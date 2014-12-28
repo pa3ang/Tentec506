@@ -833,9 +833,11 @@ void announce(char *str){
 
 void beep(int LENGTH) {
   digitalWrite(Side_Tone, HIGH);
+  digitalWrite(Band_End_Flash_led, HIGH);
   delay(LENGTH);
   for (int i=0; i <= 10e3; i++);       // delay to equel with TX speed
   digitalWrite(Side_Tone, LOW);
+  digitalWrite(Band_End_Flash_led, LOW);
   delay(ditTime) ;
 }
 
